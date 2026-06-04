@@ -1,0 +1,82 @@
+[
+    {
+        "id": "BIO-12-001",
+        "subject": "Biology",
+        "grade": 12,
+        "topic": "DNA, Gene, Genetic Code, and DNA Replication",
+        "level": "recognition",
+        "questionType": "theory",
+        "question": "Trong các phân tử sinh học sau đây, phân tử nào không được cấu trúc theo nguyên tắc đa phân?",
+        "options": {
+            "A": "Lipid.",
+            "B": "Nucleic Acid.",
+            "C": "Protein.",
+            "D": "Carbohydrate."
+        },
+        "correctOption": "A",
+        "explanation": "Lipid (chất béo) không được cấu tạo theo nguyên tắc đa phân vì cấu trúc của chúng gồm glycerol liên kết với các acid béo, không tạo thành chuỗi polymer từ các đơn phân lặp lại như carbohydrate, protein hay nucleic acid.",
+        "wrongAdvice": "Học sinh dễ nhầm lẫn vì nghĩ lipid cũng là đại phân tử sinh học thì phải là đa phân. Cần nhớ kỹ chỉ có chuỗi carbohydrate phức tạp, chuỗi polypeptide (protein), và chuỗi polynucleotide (DNA/RNA) mới cấu trúc đa phân.",
+        "source": "Đề ôn tập số 3 kỳ thi tốt nghiệp THPT năm 2025 – Sở GD&ĐT Bắc Ninh",
+        "year": 2025
+    },
+    {
+        "id": "BIO-12-002",
+        "subject": "Biology",
+        "grade": 12,
+        "topic": "DNA, Gene, Genetic Code, and DNA Replication",
+        "level": "understanding",
+        "questionType": "theory",
+        "question": "Mã di truyền có tính thoái hóa là do nguyên nhân nào sau đây?",
+        "options": {
+            "A": "Số loại mã di truyền (64 bộ ba) nhiều hơn số loại bộ ba mã hóa cho axit amin.",
+            "B": "Nhiều bộ ba khác nhau cùng mã hóa cho một loại axit amin (trừ AUG và UGG).",
+            "C": "Một bộ ba mã hóa cho nhiều loại axit amin khác nhau tùy theo loài sinh vật.",
+            "D": "Số loại axit amin nhiều hơn số loại mã di truyền hiện có trong tế bào."
+        },
+        "correctOption": "B",
+        "explanation": "Tính thoái hóa của mã di truyền nghĩa là nhiều bộ ba khác nhau cùng tham gia mã hóa cho một loại axit amin. Điều này giúp giảm thiểu ảnh hưởng của các đột biến điểm.",
+        "wrongAdvice": "Tránh nhầm lẫn tính thoái hóa (nhiều bộ ba -> 1 axit amin) với tính đặc hiệu (1 bộ ba -> chỉ 1 axit amin).",
+        "source": "Tài liệu ôn tập Gen, mã di truyền và quá trình nhân đôi ADN - tailieu.com",
+        "year": 2024
+    },
+    {
+        "id": "BIO-12-003",
+        "subject": "Biology",
+        "grade": 12,
+        "topic": "DNA, Gene, Genetic Code, and DNA Replication",
+        "level": "application",
+        "questionType": "basic_exercise",
+        "question": "Một phân tử ADN ở sinh vật nhân sơ thực hiện nhân đôi liên tiếp 3 lần. Kéo theo đó, số mạch polynucleotide mới hoàn toàn được tổng hợp từ nguyên liệu môi trường nội bào là bao nhiêu?",
+        "options": {
+            "A": "6 mạch.",
+            "B": "14 mạch.",
+            "C": "8 mạch.",
+            "D": "16 mạch."
+        },
+        "correctOption": "B",
+        "explanation": "Một phân tử ADN ban đầu có 2 mạch khuôn cũ. Sau 3 lần nhân đôi, tổng số phân tử ADN tạo thành là 2^3 = 8 phân tử, tương ứng với 8 x 2 = 16 mạch polynucleotide. Trong đó, có 2 mạch gốc ban đầu được giữ lại. Do đó số mạch mới hoàn toàn là 16 - 2 = 14 mạch.",
+        "wrongAdvice": "Học sinh hay nhầm lẫn giữa tổng số mạch mới (2^n * 2 - 2) và tổng số phân tử ADN hoàn toàn mới (2^n - 2). Hãy đọc kỹ đề bài hỏi số 'mạch' hay số 'phân tử'.",
+        "source": "Phương pháp giải bài tập ADN - Gen - Hoc247.vn",
+        "year": 2025
+    },
+    {
+        "id": "MATH-12-001",
+        "subject": "Mathematics",
+        "grade": 12,
+        "topic": "Probability and Bayes Theorem",
+        "level": "advanced",
+        "questionType": "theory",
+        "question": "Giả sử một khảo sát tính xác suất sử dụng tính năng mới của ứng dụng. Cho biết P(A|B) = 0.65, P(B) = 14/25, P(A|B') = 0.35. Xác suất toàn phần P(A) có giá trị bằng bao nhiêu?",
+        "options": {
+            "A": "0.520.",
+            "B": "0.650.",
+            "C": "0.480.",
+            "D": "0.550."
+        },
+        "correctOption": "A",
+        "explanation": "Áp dụng công thức xác suất toàn phần: P(A) = P(B)*P(A|B) + P(B')*P(A|B'). Ta có P(B) = 14/25 = 0.56 => P(B') = 11/25 = 0.44. Thay vào công thức: P(A) = 0.56 * 0.65 + 0.44 * 0.35 = 0.364 + 0.154 = 0.518, làm tròn theo dữ liệu phân số chính xác trong lời giải là 91/175 tương đương 0.518 (hoặc chuẩn ma trận đề 0.52).",
+        "wrongAdvice": "Hãy cẩn thận khi tính xác suất biến cố đối P(B') = 1 - P(B) trước khi thế vào công thức toàn phần.",
+        "source": "Đề thi thử THPT chuyên Khoa Học Huế",
+        "year": 2025
+    }
+]

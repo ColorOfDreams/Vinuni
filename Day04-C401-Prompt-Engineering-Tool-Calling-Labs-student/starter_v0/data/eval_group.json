@@ -1,0 +1,312 @@
+{
+  "dataset_id": "day04_v2_research_group",
+  "dataset_role": "group",
+  "description": "Team-written eval cases for the Tool-Calling Research Agent. Includes 5 single-turn and 5 multi-turn cases.",
+  "allowed_failure_types": [
+    "wrong_tool",
+    "wrong_arg_value",
+    "wrong_boundary",
+    "unnecessary_tool",
+    "out_of_scope",
+    "missing_info"
+  ],
+  "cases": [
+    {
+      "id": "G01_source_check_primary_url",
+      "phase": "B",
+      "suite": "group",
+      "query": "Kiem tra giup minh link nay co dang tin de trich dan trong ban tin AI khong: https://openai.com/research",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "source_check",
+            "args": {
+              "url": "https://openai.com/research"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "source_reliability_check",
+        "difficulty": "medium",
+        "what_it_tests": "A source reliability/citation request should use the new local source_check tool."
+      }
+    },
+    {
+      "id": "G02_policy_external_publishing",
+      "phase": "B",
+      "suite": "group",
+      "query": "Theo policy cong ty, dang ban tin len Telegram channel co can approval truoc khong?",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "policy",
+            "args": {
+              "policy_area": "external_publishing"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "company_policy_routing",
+        "difficulty": "medium",
+        "what_it_tests": "Internal publishing policy questions should use policy, not web lookup or send."
+      }
+    },
+    {
+      "id": "G03_arxiv_paper_text_specific_id",
+      "phase": "B",
+      "suite": "group",
+      "query": "Doc paper arXiv 1706.03762 va lay text 2 trang dau giup minh.",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "paper_text",
+            "args": {
+              "arxiv_url": "1706.03762",
+              "max_pages": 2
+            }
+          },
+          {
+            "name": "papers",
+            "args": {
+              "query": "1706.03762"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "arxiv_text_extraction",
+        "difficulty": "hard",
+        "what_it_tests": "A concrete arXiv ID plus text extraction request should use paper_text and may also query paper metadata."
+      }
+    },
+    {
+      "id": "G04_parallel_news_and_social",
+      "phase": "B",
+      "suite": "group",
+      "query": "Tim tren web tin AI hom nay va xem Twitter dang noi gi ve AI.",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "AI",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          },
+          {
+            "name": "social_search",
+            "args": {
+              "query": "AI"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "parallel_web_social_research",
+        "difficulty": "hard",
+        "what_it_tests": "A request for web news plus social discussion should call both lookup and social_search."
+      }
+    },
+    {
+      "id": "G05_draft_not_send",
+      "phase": "B",
+      "suite": "group",
+      "query": "Soan nhap mot ban tin ngan ve AI de lat nua dang Telegram.",
+      "failure_type": "wrong_boundary",
+      "expect": {
+        "no_tool": true,
+        "behavior": "draft_without_send"
+      },
+      "metadata": {
+        "skill": "draft_vs_publish_boundary",
+        "difficulty": "medium",
+        "what_it_tests": "Draft/compose intent should not call send and should not ask yes_no publish confirmation."
+      }
+    },
+    {
+      "id": "GM01_missing_url_then_fetch",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Tom tat bai nay giup minh"
+        },
+        {
+          "role": "user",
+          "content": "https://openai.com/research"
+        },
+        {
+          "role": "user",
+          "content": "Chi doc dung link do thoi"
+        }
+      ],
+      "failure_type": "missing_info",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://openai.com/research"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "multiturn_missing_url_resolution",
+        "difficulty": "medium",
+        "what_it_tests": "After the user supplies a URL in context, latest turn should fetch that exact URL."
+      }
+    },
+    {
+      "id": "GM02_missing_handle_then_timeline",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Tom tat 5 tweet moi nhat giup minh"
+        },
+        {
+          "role": "user",
+          "content": "Cua Sam Altman"
+        },
+        {
+          "role": "user",
+          "content": "Van giu dung 5 tweet nhe"
+        }
+      ],
+      "failure_type": "missing_info",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "sama",
+              "limit": 5
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "multiturn_missing_handle_resolution",
+        "difficulty": "hard",
+        "what_it_tests": "Carry requested limit and map Sam Altman to sama after missing handle is resolved."
+      }
+    },
+    {
+      "id": "GM03_topic_correction_carry_news",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Tin AI hom nay co gi moi?"
+        },
+        {
+          "role": "user",
+          "content": "Chuyen sang robotics di"
+        },
+        {
+          "role": "user",
+          "content": "Van la tin hom nay, chi robotics thoi"
+        }
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "robotics",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "multiturn_topic_correction",
+        "difficulty": "hard",
+        "what_it_tests": "Carry news/day intent while correcting the core query to robotics."
+      }
+    },
+    {
+      "id": "GM04_source_check_after_social_warning",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Co mot tweet viral noi OpenAI vua ra model moi"
+        },
+        {
+          "role": "user",
+          "content": "Kiem tra xem nguon nay co nen dua vao ban tin khong"
+        },
+        {
+          "role": "user",
+          "content": "Nguon la Twitter/X, chua co link bai chinh thuc"
+        }
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "source_check",
+            "args": {
+              "source_type": "social"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "multiturn_social_source_check",
+        "difficulty": "hard",
+        "what_it_tests": "A social-only source reliability check should use source_check rather than treating the claim as confirmed."
+      }
+    },
+    {
+      "id": "GM05_confirm_before_send_after_draft",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Soan mot ban tin ngan ve AI hom nay"
+        },
+        {
+          "role": "assistant",
+          "content": "Ban nhap: AI hom nay noi bat voi agent, enterprise adoption va an toan AI."
+        },
+        {
+          "role": "user",
+          "content": "Dang ban nay len Telegram giup minh"
+        }
+      ],
+      "failure_type": "wrong_boundary",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "yes_no"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "multiturn_confirm_before_send",
+        "difficulty": "hard",
+        "what_it_tests": "When the latest turn asks to publish a drafted item, agent should ask for yes/no confirmation before send."
+      }
+    }
+  ]
+}
